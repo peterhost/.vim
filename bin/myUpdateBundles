@@ -69,12 +69,21 @@ function doyourshit(){
 
   # MACOS
   if uname -s | grep "Darwin" >/dev/null 2>&1; then
-    [ -e "/Applications/MacVim.app/Contents/MacOS/Vim" ] && /Applications/MacVim.app/Contents/MacOS/Vim -g +BundleInstall +qall || errorAndExit " MacVim is not installed in '/applications' folder"
+    [ -e "/Applications/MacVim.app/Contents/MacOS/Vim" ] && {
+      printf "$__G_%s$__NN_\n" " waiting for vundle to finish with MAcVim   "
+      /Applications/MacVim.app/Contents/MacOS/Vim -f -g +BundleInstall +qall
+
+      #while [ ps | grep "/Applications/MacVim.app/Contents/MacOS/Vim" ]; do
+      #  :
+      #done
+      printf "$__G_%s$__NN_\n" " ...finished   "
+
+    } || errorAndExit " MacVim is not installed in '/applications' folder"
   #OTHER *NIX
   else
     gvim --version >/dev/null 2>&1
     gvim +BundleInstall +qall
-    [ $? = 0 ] && gvim +BundleInstall +qall ||  vim +BundleInstall +qall
+    [ $? = 0 ] && gvim -f +BundleInstall +qall ||  vim +BundleInstall +qall
   fi
 
 
