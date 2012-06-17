@@ -67,6 +67,10 @@ function doyourshit(){
   # bundles which require a GUI for vim (these conditionals
   # are in the .vimrc itself)
 
+  #SET a LOCK in the .vim folder, telling vimrc
+  #to not process anything past the Vundle instructions
+  touch .installlock
+
   # MACOS
   if uname -s | grep "Darwin" >/dev/null 2>&1; then
     [ -e "/Applications/MacVim.app/Contents/MacOS/Vim" ] && {
@@ -86,6 +90,8 @@ function doyourshit(){
     [ $? = 0 ] && gvim --nofork --noplugin +BundleInstall +qall ||  vim +BundleInstall +qall
   fi
 
+  # REMOVE the LOCK
+  rm -f .installlock
 
   printf "$__UN_%s$__NN_\n" "______________________________________"
   printf "$__EMG_%s$__NN_\n" "    Changes to be commited ?"
