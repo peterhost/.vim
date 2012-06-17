@@ -75,7 +75,7 @@ function doyourshit(){
   if uname -s | grep "Darwin" >/dev/null 2>&1; then
     [ -e "/Applications/MacVim.app/Contents/MacOS/Vim" ] && {
       printf "$__G_%s$__NN_\n" " waiting for vundle to finish with MAcVim   "
-      /Applications/MacVim.app/Contents/MacOS/Vim --nofork  -g +BundleInstall +qall
+      /Applications/MacVim.app/Contents/MacOS/Vim --nofork -u NONE -g +BundleInstall +qall
 
       #while [ ps | grep "/Applications/MacVim.app/Contents/MacOS/Vim" ]; do
       #  :
@@ -87,7 +87,7 @@ function doyourshit(){
   else
     gvim --version >/dev/null 2>&1
     gvim +BundleInstall +qall
-    [ $? = 0 ] && gvim --nofork  +BundleInstall +qall ||  vim +BundleInstall +qall
+    [ $? = 0 ] && gvim --nofork -u NONE +BundleInstall +qall ||  vim +BundleInstall +qall
   fi
 
   # REMOVE the LOCK
