@@ -63,27 +63,6 @@ function doyourshit(){
   rm -rf bundle
   vim +BundleInstall +qall
 
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-  #printf "$__EMG_%s$__NN_\n" " re-update all submodules"
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-
-  #git submodule update
-
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-  #printf "$__EMG_%s$__NN_\n" " Pulling current origin/master for"
-  #printf "$__EMG_%s$__NN_\n" " ALL submodules"
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-
-  #git submodule foreach git pull origin master
-
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-  #printf "$__EMG_%s$__NN_\n" " New Commit indicating submodules"
-  #printf "$__EMG_%s$__NN_\n" " have been updated in superproject"
-  #printf "$__UN_%s$__NN_\n" "______________________________________"
-
-  #git add bundle/
-
 
   printf "$__UN_%s$__NN_\n" "______________________________________"
   printf "$__EMG_%s$__NN_\n" "    Changes to be commited ?"
@@ -110,7 +89,7 @@ function doyourshit(){
   fi
 
   printf "$__UN_%s$__NN_\n" "______________________________________"
-  printf "$__EMG_%s$__NN_\n" "    FINISHED INSTALLING/UPDATING
+  printf "$__EMG_%s$__NN_\n" "    FINISHED INSTALLING/UPDATING"
   printf "$__UN_%s$__NN_\n" "______________________________________"
 
 }
