@@ -43,7 +43,10 @@
 " Bundle 'git://git.wincent.com/command-t.git'
 " " ...
 
-
+" ------------------------------------
+" UNCONDITIONALLY LOAD FOLLOWING
+" PLUGINS
+" ------------------------------------
 Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'cakebaker/scss-syntax.vim.git'
 Bundle 'cespare/vim-bclose.git'
@@ -75,6 +78,11 @@ Bundle 'vim-scripts/session.vim--Odding.git'
 Bundle 'wavded/vim-stylus.git'
 Bundle 'wookiehangover/jshint.vim.git'
 
+" ------------------------------------
+" CONDITIONALLY LOAD FOLLOWING
+" PLUGINS
+" ------------------------------------
+Bundle 'altercation/vim-colors-solarized.git'
 if v:version >= '702'
   Bundle 'L9'
   Bundle 'FuzzyFinder'
