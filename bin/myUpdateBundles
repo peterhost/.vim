@@ -60,6 +60,7 @@ function doyourshit(){
   printf "$__EMG_%s$__NN_\n" "  Reinstall All bundles"
   printf "$__UN_%s$__NN_\n" "______________________________________"
 
+  rm -rf bundle
   vim +BundleInstall +qall
 
   #printf "$__UN_%s$__NN_\n" "______________________________________"
