@@ -71,7 +71,7 @@ function doyourshit(){
   if uname -s | grep "Darwin" >/dev/null 2>&1; then
     [ -e "/Applications/MacVim.app/Contents/MacOS/Vim" ] && {
       printf "$__G_%s$__NN_\n" " waiting for vundle to finish with MAcVim   "
-      /Applications/MacVim.app/Contents/MacOS/Vim -f -g +BundleInstall +qall
+      /Applications/MacVim.app/Contents/MacOS/Vim --nofork --noplugin -g +BundleInstall +qall
 
       #while [ ps | grep "/Applications/MacVim.app/Contents/MacOS/Vim" ]; do
       #  :
@@ -83,7 +83,7 @@ function doyourshit(){
   else
     gvim --version >/dev/null 2>&1
     gvim +BundleInstall +qall
-    [ $? = 0 ] && gvim -f +BundleInstall +qall ||  vim +BundleInstall +qall
+    [ $? = 0 ] && gvim --nofork --noplugin +BundleInstall +qall ||  vim +BundleInstall +qall
   fi
 
 
