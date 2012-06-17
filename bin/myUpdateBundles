@@ -67,7 +67,8 @@ function doyourshit(){
   # bundles which require a GUI for vim (these conditionals
   # are in the .vimrc itself)
   gvim --version >/dev/null 2>&1
-  [ $? = 0 ] && gvim +BundleInstall +qall ||  vim +BundleInstall +qall
+  gvim +BundleInstall +qall
+  #[ $? = 0 ] && gvim +BundleInstall +qall ||  vim +BundleInstall +qall
 
 
   printf "$__UN_%s$__NN_\n" "______________________________________"
