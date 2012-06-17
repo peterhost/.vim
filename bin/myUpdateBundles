@@ -66,9 +66,16 @@ function doyourshit(){
   # in a TERMINAL only environment, don't install
   # bundles which require a GUI for vim (these conditionals
   # are in the .vimrc itself)
-  gvim --version >/dev/null 2>&1
-  gvim +BundleInstall +qall
-  #[ $? = 0 ] && gvim +BundleInstall +qall ||  vim +BundleInstall +qall
+
+  # MACOS
+  if uname -s | grep "Darwin" >/dev/null 2>&1; then
+    [ -e "/Applications/MacVim.app/Contents/MacOS/Vim" ] && /Applications/MacVim.app/Contents/MacOS/Vim -g +BundleInstall +qall || errorAndExit " MacVim is not installed in '/applications' folder"
+  #OTHER *NIX
+  else
+    gvim --version >/dev/null 2>&1
+    gvim +BundleInstall +qall
+    [ $? = 0 ] && gvim +BundleInstall +qall ||  vim +BundleInstall +qall
+  fi
 
 
   printf "$__UN_%s$__NN_\n" "______________________________________"
