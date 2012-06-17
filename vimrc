@@ -11,203 +11,134 @@
 
 
 "##############################################################################
-"                               PATHOGEN
+"                               VUNDLE
 "##############################################################################
 
+" ----- Launch VUNDLE runtime -----{{{1
+ set nocompatible               " be iMproved
+ filetype off                   " required!
+
+ set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
+
+ " let Vundle manage Vundle
+ " required! 
+ Bundle 'gmarik/vundle'
 
 
-" This must be first, because it changes other options as side effect
-set nocompatible
+"1}}}
+" ----- Conditionally Load/Unload plugins -----{{{1
 
-"" Needed on some linux distros for proper pathogen loading
-"" see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
-filetype off
-
-
-" ----- Load/Unload plugins RULES -----{{{1
-
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-" Bundle: tpope/vim-pathogen
-
-" CUSTOM logic
-" To disable a plugin, add it's bundle name to the following list
-let g:pathogen_disabled = ['']
-"let g:pathogen_disabled = ['Decho', 'svndiff', 'ManPageView', 'vim-blcose', 'SearchComplete', 'supertab', 'vim-fugitive', 'ShowTabs', 'vim-colors-solarized' ]
+" " My Bundles here:
+" "
+" " original repos on github
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'tpope/vim-rails.git'
+" " vim-scripts repos
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+" " non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+" " ...
 
 
-if !has('gui_running')
-  "call add(g:pathogen_disabled, 'css-color')
+Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'cakebaker/scss-syntax.vim.git'
+Bundle 'cespare/vim-bclose.git'
+Bundle 'digitaltoad/vim-jade.git'
+Bundle 'drmingdrmer/xptemplate.git'
+Bundle 'ervandew/supertab.git'
+Bundle 'majutsushi/tagbar.git'
+Bundle 'othree/html5-syntax.vim.git'
+Bundle 'pangloss/vim-javascript.git'
+Bundle 'peterhost/YankRing.vim.git'
+Bundle 'peterhost/tartify.git'
+Bundle 'peterhost/vim-markdown-preview.git'
+Bundle 'plasticboy/vim-markdown.git'
+Bundle 'scrooloose/nerdcommenter.git'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'scrooloose/syntastic.git'
+Bundle 'skammer/vim-css-color.git'
+Bundle 'slack/vim-bufexplorer.git'
+Bundle 'taq/vim-git-branch-info.git'
+Bundle 'tpope/vim-fugitive.git'
+Bundle 'tpope/vim-git.git'
+Bundle 'tpope/vim-repeat.git'
+Bundle 'tpope/vim-surround.git'
+Bundle 'tpope/vim-unimpaired.git'
+Bundle 'tsaleh/vim-matchit.git'
+Bundle 'vim-scripts/Decho.git'
+Bundle 'vim-scripts/Gist.vim.git'
+Bundle 'vim-scripts/session.vim--Odding.git'
+Bundle 'wavded/vim-stylus.git'
+Bundle 'wookiehangover/jshint.vim.git'
+
+if v:version >= '702'
+  Bundle 'L9'
+  Bundle 'FuzzyFinder'
+endif
+
+if !has("signs")
+  "Disable 'ShowMArks' 'svndiff'
+endif
+
+
+if has('gui_running')
   " for some reason the csscolor plugin is very slow when run on the terminal
   " but not in GVim, so disable it if no GUI is running
 endif
 
-if !has("gui_macvim")
+
+if has("gui_macvim")
   "the PEEPOPEN program is a Macos specific Command-T
-  call add(g:pathogen_disabled, 'vim-peepopen')
+  Bundle 'shemerey/vim-peepopen.git'
 end
 
 
 
-"if !has('gui') || &t_Co < 256
-"  call add(g:pathogen_disabled, 'csapprox')
-"  "csapprox need Vim compiled with gui support to work
-"endif
-
-
-if  !has('ruby')
-  call add(g:pathogen_disabled, 'LustyJuggler')
-  call add(g:pathogen_disabled, 'command-t')
-  " All those need ruby support
+if !has('gui') || &t_Co < 256
+  "csapprox need Vim compiled with gui support to work
 endif
 
 
-if  !has('python')
-  call add(g:pathogen_disabled, 'simplenote.vim')
+if  has('ruby')
+  " All those need ruby support
+  Bundle 'vim-scripts/LustyJuggler.git'
+endif
+
+
+if  has('python')
   " All those need python support
 endif
 
 
 if v:version < '703' || !has('python')
-  call add(g:pathogen_disabled, 'Gundo')
   " Gundo requires at least Vim 7.3
 endif
 
 
-if v:version < '702'
-  call add(g:pathogen_disabled, 'autocomplpop')
-  call add(g:pathogen_disabled, 'FuzzyFinder')
-  call add(g:pathogen_disabled, 'L9')
-endif
-
-if !has("signs")
-  call add(g:pathogen_disabled, 'ShowMarks')
-  call add(g:pathogen_disabled, 'svndiff')
-endif
-
-
-" It is essential that these lines are called before enabling filetype detection
-call pathogen#infect()
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-
-
-
-
 
 "1}}}
-"------Pathogen-BUNDLES---------------{{{1
-"
-""Was : Static: tartify
-""Bundle: git://github.com/peterhost/tartify.git
-"Bundle: git://github.com/tpope/vim-fugitive.git
-"Bundle: git://github.com/taq/vim-git-branch-info.git
-"Bundle: git://github.com/wookiehangover/jshint.vim.git
-""Bundle-command: rake
-""Bundle: git://github.com/godlygeek/csapprox.git
-"Bundle: git://github.com/slack/vim-bufexplorer.git
-"Bundle: git://github.com/vim-scripts/LustyJuggler.git
-"Bundle: git://github.com/scrooloose/syntastic.git
-"DEPREC"Bundle: git://github.com/mhz/vim-matchit.git
-"Bundle: git://github.com/tsaleh/vim-matchit.git
-""Bundle: git://github.com/scrooloose/nerdcommenter.git
-""WAS USED before scss & jade fixed  Bundle: git://github.com/peterhost/nerdcommenter.git
-"Bundle: git://github.com/plasticboy/vim-markdown.git
-"Bundle: git://github.com/tpope/vim-surround.git
-"Bundle: git://github.com/tpope/vim-repeat.git
-"""NO MORE UPDATED : Bundle: git://github.com/vim-scripts/YankRing.vim.git
-"Bundle: git@github.com:peterhost/YankRing.vim.git
-"Bundle: git://github.com/vim-scripts/session.vim--Odding.git
-"Bundle: git://github.com/altercation/vim-colors-solarized.git
-"Bundle: git://github.com/cespare/vim-bclose.git
-"Bundle: git://github.com/vim-scripts/Decho.git
-"Bundle: git://github.com/tpope/vim-unimpaired.git
-"Bundle: git://github.com/tpope/vim-git.git
-"(fuzzyFinder depends on L9)
-"Bundle: git://github.com/vim-scripts/L9.git
-"Bundle: git://github.com/vim-scripts/FuzzyFinder.git
-"
-" ..........SYNTAXES...................
-"Bundle: git://github.com/cakebaker/scss-syntax.vim.git
-"Bundle: git://github.com/digitaltoad/vim-jade.git
-"Bundle: git://github.com/wavded/vim-stylus.git
-"Bundle: git://github.com/othree/html5-syntax.vim.git
-"Bundle: git://github.com/pangloss/vim-javascript.git
-"Bundle: git://github.com/skammer/vim-css-color.git
-"
-" ..........PRECISEJUMP ...............
-" Make this one static untill pull request is resolved
-" https://github.com/vim-scripts/PreciseJump/pull/1
-" was Bundle: git://github.com/vim-scripts/PreciseJump.git
-" was Static: PreciseJump
-" EDIT : use my fork instead
-"Bundle: git@github.com:peterhost/PreciseJump.git
-"
-"
-" ..........COMPLETION ................
-"" Comprehnsive auto-completion system (does ALL)
-""Bundle: git://github.com/Shougo/neocomplcache.git
+" ----- End of VUNDLE initialisation -----{{{1
 
-""Bundle: git://github.com/vim-scripts/SearchComplete.git
 
-" this is the latest supertab (supertab-continued on vim-script)
-"Bundle: git://github.com/ervandew/supertab.git
-"
-"
-" ..........MARKDOWN PREVIEW...........
-" Best is markdown-preview, now called hammer. Only, I can't get hammer to
-" work, so in the meantim, let's just go with markdown-preview (cloned repo,
-" the original one does not exist anymore)
-""Bundle: git://github.com/robgleeson/hammer.vim.git
 
-"Bundle: git://github.com/peterhost/vim-markdown-preview.git
 
-" This one works too, but has pbs with utf8
-""Bundle: git://github.com/greyblake/vim-preview.git
-"
-"
-" ..........TAGLIST.PLUS................
-"  for JS goodness, you also need node.js & jsdoctor
-"  installed on your system (jsdoctor = jsctags)
-""Bundle: git://github.com/int3/vim-taglist-plus.git
-"
-"NOW USING TAGBAR
-"Bundle: git://github.com/majutsushi/tagbar.git
 
-" ----------NOT SURE-------------------
-"
-""Bundle: git://github.com/vim-scripts/AutoComplPop.git
-""Bundle: git://github.com/vim-scripts/upAndDown.git
-"Bundle: git://github.com/vim-scripts/Gist.vim.git
-
-" ----------MANUAL-INSTALL-------------
-
-" --------HAVE TO TRY IT SOON!!--------
-
-" --------CANT-GET-IT-TO-WORK----------
-
-" ------(NICE BUT PROBLEMATIC)---------
-
-""Bundle: git://github.com/Raimondi/delimitMate.git
-""Bundle: git://github.com/int3/vim-extradite.git           "extends fugitive
-
-" ----------(NOT NEEDED)---------------
-"
-""Bundle: git://github.com/vim-scripts/ShowMarks.git
-
-""Bundle: git://github.com/vim-scripts/Gundo.git
-""Bundle: git://github.com/scrooloose/nerdtree
-""Bundle: git://github.com/vim-scripts/Conque-Shell.git
-""Bundle: git://github.com/peterhost/svndiff.git
-
-"" ........AUTOALIGN SUITE.............
-""Bundle: git://github.com/vim-scripts/Align.git
-""Bundle: git://github.com/vim-scripts/AutoAlign.git
+ filetype plugin indent on     " required!
+ "
+ " Brief help
+ " :BundleList          - list configured bundles
+ " :BundleInstall(!)    - install(update) bundles
+ " :BundleSearch(!) foo - search(or refresh cache first) for foo
+ " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+ "
+ " see :h vundle for more details or wiki for FAQ
+ " NOTE: comments after Bundle command are not allowed..
 
 "1}}}
-
-
-
 
 
 

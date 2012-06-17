@@ -1,10 +1,11 @@
-#bundle/*
+# VUNDLE
+bundle/*
 
-#eclim
+# ECLIM
 eclim/*
 plugin/*
 
-#Others
+# OTHER
 doc/*
 session/*
 sessions/*
